@@ -3,7 +3,7 @@ const aceSnippetManager55 = ace.require('ace/snippets').snippetManager
 const { Autocomplete } = ace.require('ace/autocomplete')
 
 console.log("Content script initializing...");
-var editorExtensionId = "folpkfadmphcnajafgoioenmpfbkchkf";
+var editorExtensionId = "iolciglhoknmnacbfjgccoibbcffofhk ";
 var editor_proxy = _debug_editors[0];
 
 // inserting text at current position:
