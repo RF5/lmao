@@ -13,6 +13,8 @@ A chrome extension interfaces with Overleaf to, whenever a certain hotkey is pre
 
 This external server can either be a local python Django server or the external cloud server that I would like to host. Currently only the local option is available until I find enough funds to host a persistent GPU server (as any CPU instance takes waaay to long for autocompletes). If you are in a position to help fund this project, please get in [contact with me here](https://rf5.github.io/about.html).
 
+Note: this project is in no way associated with Overleaf or their team. It's just a cool extension that hooks into Overleaf because their service and editor is quite nice.
+
 ## Installation
 Simply go to the Google chrome web store and navigate to this extension and hit 'install'. Then next time you go to an overleaf project, click the icon and it should be pretty obvious what to do :). 
 
