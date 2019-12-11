@@ -22,7 +22,7 @@ If you have a reasonable Nvidia GPU and have python installed, then you can host
 - Create a new python environment (3.6 or newer)
 - Open a new terminal with the new python environment activated, cd into `lmao/` folder.
 - Install pip requirements (`pip install -r requirements.txt`). You might need to run a separate command to install pytorch correctly on your system. See [Pytorch's installation guide for more info](https://pytorch.org/get-started/locally/).
-- Create a folder in this directory called `models/`. Download the GPT2 model and extract it into the `models/` folder. So now there should be a `lmao/models/gpt2-small` folder.
+- Create a folder in this directory called `models/`. Download the GPT2 model/config zip file `gpt2-small.zip` under the 'Releases' tab and extract it into the `models/` folder. So now there should be a `lmao/models/gpt2-small` folder.
 - Now run `python manage.py runserver`. It should start up the server and just idle in the background. Leave this terminal running while you are using the extension on Overleaf. If you want to run the local server again, just start up the terminal and activate your python environment, and run `python manage.py runserver` again.
 
 ## Setting up cloud hosting on AWS
