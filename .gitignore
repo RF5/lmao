@@ -1,0 +1,8 @@
+**/*.pyc
+**/__pycache__
+.vscode
+env
+**/*.sqlite3
+data/
+lmao/models/
+sagemaker/

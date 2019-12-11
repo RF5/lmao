@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="material/material.min.css">
+    <script src="material/material.min.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <style>
+      html {
+        height: fit-content;
+      }
+      body {
+        margin: -1px;
+        background-color: rgb(240, 240, 240);
+      }
+      .demo-list-radio {
+        display: inline;
+      }
+      .demo-card-wide.mdl-card {
+        width: 320px;
+        min-height: 150px;
+      }
+      .demo-card-wide > .mdl-card__title {
+        color: #fff;
+        height: 100px;
+        background-color: rgb(63, 63, 63);
+        /* background: url('../assets/demos/welcome_card.jpg') center / cover; */
+      }
+      .mdl-card__supporting-text {
+        /* height: 100px; */
+        background-color: rgb(255, 255, 255);
+      }
+      .mdl-card__actions {
+        background-color: rgb(240, 240, 240);
+        border-color: rgb(240, 240, 240);
+        padding-bottom: 10px;
+      }
+      .mdl-card__actions.mdl-card--border {
+        background-color: rgb(240, 240, 240);
+        margin: 0px;
+      }
+      .mdl-list {
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .oof {
+        text-decoration: underline;
+      }
+    </style>
+    <script src="popup.js"></script>
+  </head>
+  <body>
+    <!-- <button id="changeColor"></button> -->
+    <div class="demo-card-wide mdl-card mdl-shadow--2dp">
+      <div class="mdl-card__title">
+          <h2 class="mdl-card__title-text">Languange Model Accessor Object</h2>
+      </div>
+      <div class="mdl-card__supporting-text">
+          Just turn it on and hit shift+tab to predict
+      </div>
+    </div>
+    <div class="mdl-card__actions mdl-card--border">
+      <form>
+      <ul class="demo-list-control mdl-list">
+        <li class="mdl-list__item">
+          <span class="mdl-list__item-primary-content">
+              <i class="material-icons  mdl-list__item-icon">close</i>
+              Off
+          </span>
+          <span class="mdl-list__item-secondary-action">
+            <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="offRadio" id="offRadioLbl">
+              <input type="radio" id="offRadio" class="mdl-radio__button" name="options" value="off" checked>
+            </label>
+          </span>
+        </li>
+        <li class="mdl-list__item">
+          <span class="mdl-list__item-primary-content">
+            <i class="material-icons  mdl-list__item-icon">computer</i>
+            On: locally hosted<span id="local_status" style="color: red; font-size: 10px;"></span>
+          </span>
+          <span class="mdl-list__item-secondary-action">
+            <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="onLocalHosted" id="onLocalLbl">
+              <input type="radio" id="onLocalHosted" class="mdl-radio__button" name="options" value="on_local">
+            </label>
+          </span>
+        </li>
+        <li class="mdl-list__item">
+          <span class="mdl-list__item-primary-content">
+            <i class="material-icons  mdl-list__item-icon">cloud</i>
+            On: cloud hosted<span id="cloud_status" style="color: red; font-size: 10px;"></span>
+          </span>
+          <span class="mdl-list__item-secondary-action">
+            <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="onCloudHosted" id="onHostedLbl">
+                <input type="radio" id="onCloudHosted" class="mdl-radio__button" name="options" value="on_cloud">
+            </label>
+          </span>
+        </li>
+      </ul>
+      </form>
+      <div class="mdl-card__supporting-text">
+        Current model: <b>gpt2</b><br>
+        Funding for full-time server: <b>10%</b> <br>
+        Interesting in helping fund the cloud server? <a class="mdl-navigation__link oof" href="https://rf5.github.io/about.html"> Please get in touch with me here. </a>
+      </div>
+    </div>
+  </body>
+</html>
