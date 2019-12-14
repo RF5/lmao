@@ -8,6 +8,8 @@ Some more info:
 
 ![pepe](lmao_zoomed.gif)
 
+**STATUS: closed alpha**. Hopefully an open beta in a few weeks.
+
 ## TL;DR: how it works
 A chrome extension interfaces with Overleaf to, whenever a certain hotkey is pressed, send an HTTPS request to an external inference server (running the GPT2 model) passing along the recent text history around the cursor. The server then returns a few predictions for the next few words, and the chrome extension adds these as autocompletions in the Overleaf editor. [Feel free to read more about it, and how the GPT2 models were fine-tuned here](https://rf5.github.io/2019/12/09/lmao-overleaf.html).
 
