@@ -15,10 +15,16 @@ chrome.runtime.onInstalled.addListener(function() {
       });
   });
 
-var creds = new AWS.Credentials({accessKeyId: 'AKIAZCRXUH2IRTMWV6RI', secretAccessKey: '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'});
-var sagemakerruntime = new AWS.SageMakerRuntime({region: "eu-west-1", credentials: creds});
-const use_cloud_predictor = true;
 const endpoint_name = "lmao-test-01";
+const url = chrome.runtime.getURL('config.json');
+let _api_key = null;
+function setAPI(incoming) {
+    _api_key = incoming["x-api-key"];
+}
+
+fetch(url)
+    .then((response) => response.json()) //assuming file contains json
+    .then((json) => setAPI(json));
 
 chrome.runtime.onMessageExternal.addListener(
 function(request, sender, sendResponse) {
@@ -58,23 +64,30 @@ function(request, sender, sendResponse) {
             // console.log("sending " + JSON.stringify(request.lines))
             xhr.send(JSON.stringify({lines: request.lines}));
         } else if(data.lm_inference_state === 'on_cloud') {
-            // console.log("Getting inference from cloud")
-            const params = {
-                Body: JSON.stringify({lines: request.lines, pred_length: 5, n_seqs: 3}), 
-                EndpointName: endpoint_name, 
-                Accept: "application/json",
-                ContentType: "application/json"
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "https://h0sywlk4gh.execute-api.eu-west-1.amazonaws.com/test-lmao-en/invoke-lmao", true);
+            xhr.setRequestHeader('x-api-key', _api_key);
+            xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+            xhr.onload = function (e) {
+                if (xhr.readyState === 4) {
+                    if (xhr.status === 200) {
+                        // console.log(xhr.responseText);
+                        var response = JSON.parse(xhr.responseText);
+                        chrome.storage.sync.set({local_offline: false},  function() {});
+                        sendResponse({prediction: response.prediction});
+                    } else {
+                        sendResponse(null);
+                        msg_popup_offline('cloud');
+                        console.log(xhr.statusText);
+                    }
+                }
             };
-            sagemakerruntime.invokeEndpoint(params, function(err, data) {
-                if (err) {
-                    msg_popup_offline('cloud');
-                    console.log(err, err.stack); 
-                } else {
-                    // console.log(JSON.parse(data.Body));
-                    chrome.storage.sync.set({cloud_offline: false},  function() {});
-                    sendResponse({prediction: JSON.parse(data.Body).prediction})
-                } 
-            });
+            xhr.onerror = function (e) {
+                sendResponse(null);
+                msg_popup_offline('cloud');
+                console.log(xhr.statusText);
+            };
+            xhr.send(JSON.stringify({data:{lines: request.lines, pred_length: 5, n_seqs: 3}}));
         }
     });
 });

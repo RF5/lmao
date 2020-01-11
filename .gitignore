@@ -6,3 +6,5 @@ env
 data/
 lmao/models/
 sagemaker/
+*.zip
+**/config.json

@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
       offRadio.checked = true
       setTimeout(() => {
         offRadioLbl.MaterialRadio.check()
-      }, 30);
+      }, 40);
 
       prev = offRadio
     } else if(data.lm_inference_state === 'on_local') {
@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
       onLocal.checked = true
       setTimeout(() => {
         onLocalLbl.MaterialRadio.check()
-      }, 30);
+      }, 40);
       inject_script()
       prev = onLocal
     } else if(data.lm_inference_state === 'on_cloud') {
@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
       onCloud.checked = true
       setTimeout(() => {
         onCloudLbl.MaterialRadio.check()
-      }, 30);
+      }, 40);
       inject_script()
       prev = onCloud
     }
