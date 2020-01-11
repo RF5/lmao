@@ -24,7 +24,7 @@ LMAO [Language Model Accessor Orchestrator views
 '''
 
 output_dir = "./models/gpt2-small"
-device = torch.device('cpu')
+device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 print("Loading model into memory from dir ", output_dir)
 # Step 1: Save a model, configuration and vocabulary that you have fine-tuned
 
@@ -144,18 +144,12 @@ class Infer(APIView):
                     status=status.HTTP_400_BAD_REQUEST)
         else:
             pred_length = 5
-        
-        # print('\n'.join(lines[-5:]))
-        # print(len(lines[-1]))
-        import time
 
         start = time.time()
-        print('|| ', '\n'.join(lines))
         pred_text = gpt2_infer('\n'.join(lines))
         end = time.time()
         print(f">>>>> Took {end-start} seconds.")
         print(">>>>> Predicted text: ", pred_text)
-        # token, _ = Token.objects.get_or_create(user=user)
         response = {
             'message': 'Success',
             'prediction': pred_text,
