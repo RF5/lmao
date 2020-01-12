@@ -1,10 +1,10 @@
 {
     "name": "LMAO Overleaf Integration",
-    "version": "0.3.0",
+    "version": "0.3.1",
     "description": "A LaTeX neural autocomplete plugin for Overleaf",
     "permissions": ["activeTab", "declarativeContent", "storage", "http://127.0.0.1:8000/*", "https://h0sywlk4gh.execute-api.eu-west-1.amazonaws.com/test-lmao-en/invoke-lmao"],
     "background": {
-        "scripts": ["aws-sdk-2.580.0.min.js", "background.js"],
+        "scripts": ["background.js"],
         "persistent": false
     },
     "page_action": {
