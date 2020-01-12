@@ -1,5 +1,5 @@
 chrome.runtime.onInstalled.addListener(function() {
-    chrome.storage.sync.set({lm_inference_state: 'off'}, function() {
+    chrome.storage.sync.set({lm_inference_state: 'off', pred_len: 4}, function() {
       console.log("LMAO reset xD");
     });
     chrome.declarativeContent.onPageChanged.removeRules(undefined, function() {
@@ -32,7 +32,7 @@ function(request, sender, sendResponse) {
         return;
     }
     // note: lm_inference_state is either "off", "on_local", or "on_cloud"
-    chrome.storage.sync.get('lm_inference_state', function(data) {
+    chrome.storage.sync.get(['lm_inference_state', 'pred_len'], function(data) {
         if (data.lm_inference_state === 'off') {
             // console.log("Inference is off");
             sendResponse(null);
@@ -62,7 +62,7 @@ function(request, sender, sendResponse) {
                 console.log(xhr.statusText);
             };
             // console.log("sending " + JSON.stringify(request.lines))
-            xhr.send(JSON.stringify({lines: request.lines}));
+            xhr.send(JSON.stringify({lines: request.lines, pred_length: data.pred_len}));
         } else if(data.lm_inference_state === 'on_cloud') {
             var xhr = new XMLHttpRequest();
             xhr.open("POST", "https://h0sywlk4gh.execute-api.eu-west-1.amazonaws.com/test-lmao-en/invoke-lmao", true);
@@ -87,7 +87,7 @@ function(request, sender, sendResponse) {
                 msg_popup_offline('cloud');
                 console.log(xhr.statusText);
             };
-            xhr.send(JSON.stringify({data:{lines: request.lines, pred_length: 5, n_seqs: 3}}));
+            xhr.send(JSON.stringify({"data":{"lines": request.lines, "pred_length": data.pred_len, n_seqs: 3}}));
         }
     });
 });

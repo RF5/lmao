@@ -138,7 +138,7 @@ class Infer(APIView):
 
         if 'pred_length' in request.data:
             try: 
-                pred_length = int(request.data)
+                pred_length = int(request.data['pred_length'])
             except Exception as e:
                 return Response("Error: prediction length specified but in wrong format",
                     status=status.HTTP_400_BAD_REQUEST)
@@ -146,7 +146,7 @@ class Infer(APIView):
             pred_length = 5
 
         start = time.time()
-        pred_text = gpt2_infer('\n'.join(lines))
+        pred_text = gpt2_infer('\n'.join(lines), pred_length=pred_length)
         end = time.time()
         print(f">>>>> Took {end-start} seconds.")
         print(">>>>> Predicted text: ", pred_text)

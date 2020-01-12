@@ -93,6 +93,25 @@ document.addEventListener('DOMContentLoaded', (event) => {
       spon.textContent = "[OFFLINE]"
     }
   });
+
+  // stuff for prediction length slider
+  var predlenSlider = document.getElementById('pred_len_slider');
+  var predlenLbl = document.getElementById('pred_len_lbl');
+  predlenSlider.addEventListener('change', function() {
+    const new_val = this.value;
+    chrome.storage.sync.set({pred_len: new_val}, function() {
+      console.log("pred_len has been set to", new_val);
+      predlenLbl.textContent = new_val;
+    });
+  });
+
+  chrome.storage.sync.get('pred_len', function(data) {
+    predlenLbl.textContent = data.pred_len;
+    setTimeout(() => {
+      predlenSlider.MaterialSlider.change(data.pred_len);
+    }, 40);
+  });
+
 })
 
 
