@@ -6,7 +6,7 @@ Some more info:
 - Autocompletes the next few words given the historical context in the current document.
 - Here is what some of the predictions look like in the editor:
 
-![pepe](lmao_zoomed.gif)
+![gif of live predictions](lmao_zoomed.gif)
 
 **STATUS: on-request alpha**. Please get in contact if you would like to help test out the extension.
 
@@ -16,6 +16,15 @@ A chrome extension interfaces with Overleaf to, whenever a certain hotkey is pre
 This external server can either be a local python Django server or the external cloud server that I would like to host. Currently only the local option is available until I find enough funds to host a persistent GPU server (as any CPU instance takes waaay to long for autocompletes). If you are in a position to help fund this project, please get in [contact with me here](https://rf5.github.io/about.html).
 
 Note: this project is in no way associated with Overleaf or their team. It's just a cool extension that hooks into Overleaf because their service and editor is quite nice.
+
+### Customization
+The various settings of LMAO can be adjusted by clicking on the icon when in Overleaf, which brings up a menu that looks something like
+
+<p align="center"><img src="popup.jpg"></p>
+
+The settings are:
+- **Prediction length** is the number of words to auto-complete for each prediction. i.e a value of 4 means that predictions for the next 4 words will be generated. Extremely high values of this may increase prediction times a little.
+- **Context length** is the number of words before the current cursor position to use as historical context to condition the text generation on. So a value of 200 means "use the last 200 words to predict the next word". Extremely high values of this may increase prediction times a little (still <800ms even at 600 words with a GPU).
 
 ## Installation
 Simply go to the Google chrome web store and navigate to this extension and hit 'install'. Then next time you go to an overleaf project, click the icon and it should be pretty obvious what to do :). 
@@ -34,7 +43,6 @@ Don't worry, only I need to do this. Currently just trying to gather enough fund
 
 ## Current leads
 - Aquire funding for GPU cloud server.
-- Bug fixes
 - Allow custom hotkey setup for inference
 - Allow inference if user does not type for a certain number of seconds
 - Train and use bigger GPT2 models for better predictions + get more quality LaTeX source files to train on.
@@ -45,4 +53,4 @@ Don't worry, only I need to do this. Currently just trying to gather enough fund
 - Alternatively, try find a way to change the prefix behavior calculation. See line 1508/1542 of ext-language-tools.
 
 ## Known bugs
-- Does not work so well if large portions of the document are commented out.
+- ~~Does not work so well if large portions of the document are commented out.~~ Fixed.

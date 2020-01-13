@@ -111,7 +111,23 @@ document.addEventListener('DOMContentLoaded', (event) => {
       predlenSlider.MaterialSlider.change(data.pred_len);
     }, 40);
   });
+  // stuff for context length slider
+  var ctxlenSlider = document.getElementById('context_len_slider');
+  var ctxlenLbl = document.getElementById('context_len_lbl');
+  ctxlenSlider.addEventListener('change', function() {
+    const new_val = this.value;
+    chrome.storage.sync.set({context_len: new_val}, function() {
+      console.log("context_len has been set to", new_val);
+      ctxlenLbl.textContent = new_val;
+    });
+  });
 
+  chrome.storage.sync.get('context_len', function(data) {
+    ctxlenLbl.textContent = data.context_len;
+    setTimeout(() => {
+      ctxlenSlider.MaterialSlider.change(data.context_len);
+    }, 40);
+  });
 })
 
 

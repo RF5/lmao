@@ -19,17 +19,19 @@ var languageModelCompleter = {
     identifierRegexps: [/.+/],
     getCompletions: function(editor, session, pos, prefix, callback) {
         // console.log(pos, prefix);
-        const grab_n_lines = 10;
+
         // don't try autocomplete if we are already doing commands...
         if(prefix.startsWith('\\') && prefix.length == 1) return
         if(prefix.startsWith('\\') && (prefix.includes(" ") == false) && (prefix.includes("{") == false)) return
         if(lm_prediction_flag == false) return
+
         // gather last n lines
+        const grab_n_lines = 100;//50;
         var lines = editor_proxy.session.getLines(pos["row"] - grab_n_lines, pos["row"])
 
         lines[lines.length - 1] = lines[lines.length - 1].substring(0, pos["column"]+1)
-        // console.log(lines); // last 6 lines
-        console.log(">>> Getting predictions with ", lines  )
+
+        console.log(">>> Getting predictions with last 5 lines ", lines.slice(lines.length-5))
 
         // dispatch message to background script
         var resp = "None";
