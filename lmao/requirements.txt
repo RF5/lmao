@@ -2,7 +2,7 @@ Django>=3.0.1
 djangorestframework==3.10.3
 Markdown==3.1.1
 numpy==1.17.4
-Pillow==6.2.2
+Pillow>=7.1.0
 pytz==2019.3
 six==1.13.0
 sqlparse==0.3.0
