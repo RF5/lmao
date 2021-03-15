@@ -36,7 +36,7 @@ If you have a reasonable Nvidia GPU and have python installed, then you can host
 - Open a new terminal with the new python environment activated, cd into `lmao/` folder.
 - Install pip requirements (`pip install -r requirements.txt`). You might need to run a separate command to install pytorch correctly on your system. See [Pytorch's installation guide for more info](https://pytorch.org/get-started/locally/).
 - Create a folder in this directory called `models/`. Download the GPT2 model/config zip file `gpt2-small.zip` under the 'Releases' tab and extract it into the `models/` folder. So now there should be a `lmao/models/gpt2-small` folder.
-- Now run `python manage.py runserver`. It should start up the server and just idle in the background. Leave this terminal running while you are using the extension on Overleaf. If you want to run the local server again, just start up the terminal and activate your python environment, and run `python manage.py runserver` again.
+- Now run `python manage.py runserver`. It should start up the server and just idle in the background. Leave this terminal running while you are using the extension on Overleaf. If you want to run the local server again, just start up the terminal and activate your python environment, and run `python manage.py runserver` again. PS: you might need to run `python manage.py migrate` the first time you try run the server, depending on the Django version.
 
 ## Setting up cloud hosting on AWS
 Don't worry, only I need to do this. Currently just trying to gather enough funds for a persistent GPU inference server.
