@@ -1,4 +1,4 @@
-Django==3.1.12
+Django==3.1.13
 djangorestframework==3.11.2
 Markdown==3.1.1
 numpy==1.17.4
