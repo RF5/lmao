@@ -10,6 +10,8 @@ Some more info:
 
 **STATUS UPDATE Feb 2021: on haitus**. Please get in contact if you would like to help test out the extension or take the project further. Due to time and other constraints, I haven't been able to continue development of this project. Following the rest of this readme might not work exactly as some libraries have been updated and API calls have changed, so you might need to fiddle around to get things to work. Nevertheless, it is still quite fun once one gets it working, and if anyone wants to continue work on it feel free to fork the repo or just see how I've done things.
 
+**STATUS UPDATE May 2023: indefinite haitus**. I am archiving the repository since it is very inactive and many of the libraries it is based on have had substantial changes and upgrades in the intervening years. If anyone wishes to pick up this project please let me know. 
+
 ## TL;DR: how it works
 A chrome extension interfaces with Overleaf to, whenever a certain hotkey is pressed, send an HTTPS request to an external inference server (running the GPT2 model) passing along the recent text history around the cursor. The server then returns a few predictions for the next few words, and the chrome extension adds these as autocompletions in the Overleaf editor. [Feel free to read more about it, and how the GPT2 models were fine-tuned here](https://rf5.github.io/2019/12/09/lmao-overleaf.html).
 
